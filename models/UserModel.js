@@ -7,9 +7,6 @@ class UserModel {
       .insert({firstName, lastName, email, hashedPassword, countryOfOrigin, language})
       .returning("*");
   };
-
-
-
 }
 
 function getCurrentDateJson() {
