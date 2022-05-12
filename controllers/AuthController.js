@@ -18,7 +18,7 @@ class AuthController {
     static validateLogin = async (req,res) => {
 
     }
-    static signOut = async (req,res) => {
+    static logOut = async (req,res) => {
         
     }
 
