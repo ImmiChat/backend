@@ -18,5 +18,5 @@ return knex.schema.createTable('posts', table => {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-  return knex.schema.dropTable('posts')
+    return knex.schema.dropTable('posts')
 };

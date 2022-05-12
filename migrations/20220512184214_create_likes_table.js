@@ -8,7 +8,6 @@ return knex.schema.createTable("likes", (table) => {
     table.integer("post_id").notNullable();
     table.integer("user_id").notNullable();
     table.timestamps(true, true);
-
     table.foreign("user_id").references("id").inTable("users");
     table.foreign("post_id").references("id").inTable("posts");
     });
