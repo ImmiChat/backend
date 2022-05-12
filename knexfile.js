@@ -9,8 +9,8 @@ module.exports = {
     client: 'postgresql',
     connection: {
       database: 'immichat',
-      user:     '',
-      password: ''
+      user:     'postgres',
+      password: '1123'
     },
   },
   production: {
