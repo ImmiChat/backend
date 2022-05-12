@@ -10,7 +10,7 @@ exports.up = function (knex) {
       table.increments("id").primary();
       table.string("first_name");
       table.string("last_name");
-      table.string("email");
+      table.string("email").unique();
       table.string("password").notNullable();
       table.string("bio");
       table.string("profile_picture");
@@ -31,5 +31,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTable("users").dropTable('posts');
+  return knex.schema.dropTable("posts").dropTable("users");
 };
