@@ -23,11 +23,11 @@ class AuthController {
     const { email, password } = req.body;
     const user = await UserModel.getUserFromDB(email);
     if (user.length === 0) {
-      return res.status(404).json("user not found");
+      return res.status(401).json({ message: "User not found" });
     }
     const validation = await bcrypt.compare(password, user[0].password);
     if (!validation) {
-      return res.status(404).json("Incorrect Password");
+      return res.status(404).json({ message: "Incorrect Password" });
     }
     const token = jwt.sign(user[0], "Your_Secret_Key");
     return res
@@ -43,13 +43,12 @@ class AuthController {
   };
 
   static isAuthenticated = async (req, res) => {
-    const token = req.headers.access_token;
+    const token = req.cookies.access_token;
     jwt.verify(token, "Your_Secret_Key", (err, decoded) => {
       if (err) {
-        res.status(401).json(`Not authenticated`);
+        return res.status(401).json(`Not authenticated`);
       } else {
-        res.status(201).json(decoded);
-      }
+        return res.status(201).json(decoded);
     });
   };
 }
