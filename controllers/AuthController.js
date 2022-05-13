@@ -17,7 +17,7 @@ class AuthController {
       hashedPassword,
     };
     const newUser = await UserModel.createUserFromDB(userInfo);
-    return res.status(201).json(newUser);
+    return res.status(201).json(`Successfully Registered!`);
   };
   static validateLogin = async (req, res) => {
     const { email, password } = req.body;
@@ -29,9 +29,29 @@ class AuthController {
     if (!validation) {
       return res.status(404).json("Incorrect Password");
     }
-    return res.status(201).json(user);
+    const token = jwt.sign(user[0], "Your_Secret_Key");
+    return res
+      .cookie("access_token", token, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+      })
+      .status(200)
+      .json({ message: "Logged in successfully 😊 👌", token, user: user[0] });
   };
-  static logOut = async (req, res) => {};
+  static logOut = async (req, res) => {
+    return res.clearCookie("access_token").status(200).json("Signed out");
+  };
+
+  static isAuthenticated = async (req, res) => {
+    const token = req.headers.access_token;
+    jwt.verify(token, "Your_Secret_Key", (err, decoded) => {
+      if (err) {
+        res.status(401).json(`Not authenticated`);
+      } else {
+        res.status(201).json(decoded);
+      }
+    });
+  };
 }
 
 module.exports = AuthController;
