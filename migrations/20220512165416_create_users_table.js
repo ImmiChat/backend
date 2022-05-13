@@ -15,8 +15,7 @@ return knex.schema.createTable('users',(table) => {
     table.string('profile_picture')
     table.string('country_of_origin')
     table.string('language')
-    table.timestamp('created_at').defaultTo(knex.fn.now())
-    table.timestamp('updated_at').defaultTo(knex.fn.now())
+    table.timestamp(true, true)
     })
 };
 

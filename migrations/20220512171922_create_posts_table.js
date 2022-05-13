@@ -4,12 +4,11 @@
  */
 exports.up = function(knex) {
 return knex.schema.createTable('posts', table => {
-    table.increments('comments_id').primary()
+    table.increments('id').primary()
     table.integer('user_id').references('user_id').inTable('users').onDelete('cascade');
+    table.integer('likes')
     table.string('body').notNullable()
-    table.timestamp('created_at').defaultTo(knex.fn.now())
-    table.timestamp('updated_at').defaultTo()
-    table.foreign('user_id').references('id').inTable('users')
+    table.timestamp(true, true)
     })
 };
 
