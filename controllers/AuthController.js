@@ -49,7 +49,6 @@ class AuthController {
         return res.status(401).json(`Not authenticated`);
       } else {
         return res.status(201).json(decoded);
-      }
     });
   };
 }
