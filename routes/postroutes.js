@@ -12,7 +12,7 @@ Router.get("/posts", postcontrols.getAllPosts);
 // router.get(/users/:id/posts)
 
 // Get a single post by id
-Router.get("/posts/:id", postcontrols.getAllPostsSingleUser);
+Router.get("users/:id/posts", postcontrols.getAllPostsSingleUser);
 
 // MAKE NEW BLOG
 // /posts
