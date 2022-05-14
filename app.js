@@ -8,7 +8,7 @@ const app = express();
 //const dbpool = require(./dbconfig)
 
 //This is the port
-const PORT = 8000;
+const PORT = 9000;
 
 //middleware
 app.use(express.json());

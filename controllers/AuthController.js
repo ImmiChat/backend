@@ -29,26 +29,45 @@ class AuthController {
     if (!validation) {
       return res.status(404).json({ message: "Incorrect Password" });
     }
-    const token = jwt.sign(user[0], "Your_Secret_Key");
-    return res
-      .cookie("access_token", token, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-      })
-      .status(200)
-      .json({ message: "Logged in successfully 😊 👌", token, user: user[0] });
+    // JWT
+    const token = jwt.sign({ userId: user[0].id }, "Your_Secret_Key", {
+      expiresIn: "1d",
+    });
+    //
+    const refreshToken = jwt.sign({ userId: user[0].id }, "Your_Secret_Key", {
+      expiresIn: "7d",
+    });
+    console.log(process.env.NODE_ENV);
+    return res.status(200).json({
+      message: "Logged in successfully 😊 👌",
+      token,
+      user: user[0],
+      refreshToken,
+    });
   };
+
   static logOut = async (req, res) => {
     return res.clearCookie("access_token").status(200).json("Signed out");
   };
 
-  static isAuthenticated = async (req, res) => {
-    const token = req.cookies.access_token;
-    jwt.verify(token, "Your_Secret_Key", (err, decoded) => {
+  static authenticate = async (req, res) => {
+    const token = req.body.refreshToken;
+    if (!token) {
+      return res.status(401).json(`Not authenticated`);
+    }
+    jwt.verify(token, "Your_Secret_Key", async (err, decoded) => {
       if (err) {
         return res.status(401).json(`Not authenticated`);
       } else {
-        return res.status(201).json(decoded);
+        const userId = decoded.userId;
+        const user = await UserModel.getUserFromDBByID(userId);
+        const accessToken = jwt.sign(user[0], "Your_Secret_Key", {
+          expiresIn: "1d",
+        });
+        return res.status(201).json({
+          token: accessToken,
+          user,
+        });
       }
     });
   };

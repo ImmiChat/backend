@@ -16,6 +16,10 @@ class UserModel {
   static getUserFromDB = (email) => {
     return db.select().from("users").where({ email });
   };
+
+  static getUserFromDBByID = (id) => {
+    return db.select().from("users").where({ id });
+  };
 }
 
 function getCurrentDateJson() {
