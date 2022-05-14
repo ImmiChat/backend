@@ -15,7 +15,7 @@ Router.get("/posts", postcontrols.getAllPosts);
 // Get a single post by id
 
 // This is getting a single post by id. Not All posts from single User
-Router.get("posts/:id/", postcontrols.getAllPostsSingleUser);
+Router.get("posts/:id/", postcontrols.getASinglePost);
 
 // MAKE NEW BLOG
 // /posts
