@@ -4,48 +4,48 @@ const postmodels = require("../models/postsmodels");
 
 //HOME SCREEN
 const home = async (req, res) => {
-  res.send("This is our screen working");
+    return res.send("This is our screen working");
 };
 
 //GET ALL POSTS
 const getAllPosts = async (req, res) => {
-  const selectAllPosts = await postmodels.getAllPostsDB();
-  return res.status(200).json(selectAllPosts);
+    const selectAllPosts = await postmodels.getAllPostsDB();
+    return res.status(200).json(selectAllPosts);
 };
 
 // Get a single post by postId (Not user id)
 //GET ALL POST FROM A SINGLE USER
 const getASinglePost = async (req, res) => {
-  const postID = parseInt(req.params.id);
-  let selectSinglePost = await postmodels.getAllPostsSingleUserDB(postID);
-  return res.status(200).json(selectSinglePost);
+    const postID = parseInt(req.body.userID);
+    const selectSinglePost = await postmodels.getAllPostsSingleUserDB(postID);
+    return res.status(200).json(selectSinglePost);
 };
 
 // /posts and get userId from req.body
 
 //MAKE NEW POST
 const createNewPost = async (req, res) => {
-  const userID = parseInt(req.params.id);
-  const { content } = req.body;
-  let makeNewPost = await postmodels.createNewPostDB(userID, content);
-  return res.status(200).json(makeNewPost);
+    const postID = parseInt(req.body.id);
+    const { content } = req.body;
+    const makeNewPost = await postmodels.createNewPostDB(postID, content);
+    return res.status(200).json(makeNewPost);
 };
 
 // /post/:id no need for userId
 //UPDATE EXISTING BLOG
 const updatePost = async (req, res) => {
-  const postID = parseInt(req.params.postid);
-  const { content } = req.body;
-  let fixPost = await postmodels.updatePostDB(content, postID);
-  return res.status(200).json(fixPost);
+    const postID = parseInt(req.body.postid);
+    const { content } = req.body;
+    const fixPost = await postmodels.updatePostDB(content, postID);
+    return res.status(200).json(fixPost);
 };
 
 // /post/:id no need for userId
 //DELETE EXISTING POST
 const deletePost = async (req, res) => {
-  const postID = parseInt(req.params.postid);
-  let destroyPost = await postmodels.deleteOnePostDB(postID);
-  return res.status(200).json(destroyPost);
+    const postID = parseInt(req.body.postid);
+    const destroyPost = await postmodels.deleteOnePostDB(postID);
+    return res.status(200).json(destroyPost);
 };
 
 module.exports = {
