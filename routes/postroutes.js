@@ -12,22 +12,22 @@ Router.get("/posts", postcontrols.getAllPosts);
 // router.get(/users/:id/posts)
 
 // Get a single post by id
-Router.get("users/:id/posts", postcontrols.getAllPostsSingleUser);
+Router.get("posts/:id/", postcontrols.getAllPostsSingleUser);
 
 // MAKE NEW BLOG
 // /posts
 // body:userId
 
-Router.post("/posts/:id", postcontrols.createNewPost);
+Router.post("/posts", postcontrols.createNewPost);
 
 // /post/:id
 // id ^ here is postId
 //UPDATE EXISTING BLOG
-Router.put("/posts/:id/:postid", postcontrols.updatePost);
+Router.put("/posts/:id/", postcontrols.updatePost);
 
 // /post/:id
 //DELETE EXISTING BLOG
-Router.delete("/posts/:id/:postid", postcontrols.deletePost);
+Router.delete("/posts/:id/", postcontrols.deletePost);
 
 // Middleware that checks if the user is the same
 
