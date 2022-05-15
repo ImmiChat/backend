@@ -3,6 +3,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/AuthRouter");
 const cors = require("cors");
+const FeedRouter = require("./routes/FeedRouter");
 const app = express();
 
 //const dbpool = require(./dbconfig)
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
 app.use(authRoutes);
+app.use(FeedRouter);
 
 app.get("/", (req, res) => {
   res.status(200).send("Testing Testing 1 2 3");
