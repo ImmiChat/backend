@@ -6,8 +6,30 @@ exports.seed = async function (knex) {
   // Deletes ALL existing entries
   await knex("posts").del();
   await knex("posts").insert([
-    { id: 1, user_id: 1, body: "This is a test" },
-    { id: 2, user_id: 1, body: "This is also a test" },
-    { id: 3, user_id: 2, body: "this is still a test" },
+    {
+      id: 1,
+      user_id: 1,
+      body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur minima sapiente vel eos repellendus sunt ipsam laborum nisi repudiandae, nostrum, nobis nesciunt perferendis suscipit magnam tempore culpa harum totam. Ullam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur minima sapiente vel eos repellendus sunt ipsam laborum nisi repudiandae, nostrum, nobis nesciunt perferendis suscipit magnam tempore culpa harum totam. Ullam.",
+    },
+    {
+      id: 2,
+      user_id: 2,
+      body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur minima sapiente vel eos repellendus sunt ipsam laborum nisi repudiandae, nostrum, nobis nesciunt perferendis suscipit magnam tempore culpa harum totam. Ullam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur minima sapiente vel eos repellendus sunt ipsam laborum nisi repudiandae, nostrum, nobis nesciunt perferendis suscipit magnam tempore culpa harum totam. Ullam.",
+    },
+    {
+      id: 3,
+      user_id: 3,
+      body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur minima sapiente vel eos repellendus sunt ipsam laborum nisi repudiandae, nostrum, nobis nesciunt perferendis suscipit magnam tempore culpa harum totam. Ullam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur minima sapiente vel eos repellendus sunt ipsam laborum nisi repudiandae, nostrum, nobis nesciunt perferendis suscipit magnam tempore culpa harum totam. Ullam.",
+    },
+    {
+      id: 4,
+      user_id: 1,
+      body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur minima sapiente vel eos repellendus sunt ipsam laborum nisi repudiandae, nostrum, nobis nesciunt perferendis suscipit magnam tempore culpa harum totam. Ullam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur minima sapiente vel eos repellendus sunt ipsam laborum nisi repudiandae, nostrum, nobis nesciunt perferendis suscipit magnam tempore culpa harum totam. Ullam.",
+    },
+    {
+      id: 5,
+      user_id: 2,
+      body: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur minima sapiente vel eos repellendus sunt ipsam laborum nisi repudiandae, nostrum, nobis nesciunt perferendis suscipit magnam tempore culpa harum totam. Ullam.Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequuntur minima sapiente vel eos repellendus sunt ipsam laborum nisi repudiandae, nostrum, nobis nesciunt perferendis suscipit magnam tempore culpa harum totam. Ullam.",
+    },
   ]);
 };
