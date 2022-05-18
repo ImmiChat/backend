@@ -26,14 +26,12 @@ const getASinglePost = async (req, res) => {
 
 //MAKE NEW POST
 const createNewPost = async (req, res) => {
-    try {
-    //const postID = req.body.id;
-    const { body } = req.body;
-    const makeNewPost = await postmodels.createNewPostDB(body);
+    
+    const {id, content} = req.body;
+    const makeNewPost = await postmodels.createNewPostDB(id, content);
+    console.log(makeNewPost)
     return res.status(200).json(makeNewPost);
-    } catch(err) {
-        res.status(404).json({ message: err.message })
-    }
+    
 };
 
 // /post/:id no need for userId

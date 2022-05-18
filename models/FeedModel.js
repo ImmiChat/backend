@@ -9,7 +9,8 @@ class FeedModel {
         "users.last_name",
         "posts.body",
         "posts.updated_at"
-      );
+      )
+      .orderBy('posts.updated_at', 'desc')
   };
 }
 
