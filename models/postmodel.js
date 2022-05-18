@@ -19,13 +19,8 @@ function createNewPostDB(userID, postContent) {
 }
 
 //UPDATE EXISTING POST
-function updatePostDB(id, user_id, body) {
-  return dbpool
-    .query(
-      "UPDATE posts SET id = $1 WHERE user_id = $2 AND body = $3 RETURNING *",
-      [id, user_id, body]
-    )
-    .then((results) => results.rows[0]);
+function updatePostDB(id, body) {
+  return db('posts').where({id}).update({body}).returning('*');
 }
 
 //DELETE A POST

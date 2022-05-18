@@ -37,18 +37,10 @@ const createNewPost = async (req, res) => {
 // /post/:id no need for userId
 //UPDATE EXISTING POST 
 const updatePost = async (req, res) => {
-    try {
-    //const postID = req.body.id;
-    const id = req.body.id
-    const user_id = req.body.user_id
-    const { body } = req.body;
-    const fixPost = await postmodels.updatePostDB(id, user_id, body);
-    console.log(fixPost)
-    return res.status(200).json(fixPost);
-    //console.log()
-    } catch(err) {
-        res.status(404).json({ message: err.message })
-    }
+    const id = req.params.id;
+    const body = req.body.body;
+    const updatedPost = await postmodels.updatePostDB(id, body);
+    return res.status(201).json(updatedPost);
 };
 
 // /post/:id no need for userId
