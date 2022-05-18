@@ -43,6 +43,7 @@ const updateComment = async(req, res) => {
         //console.log(userID)
         const userID = req.body.user_id;
         //console.log(commentText)
+        const establishedComment = req.body.comment_text;
         const commentText = req.body.comment_text;
         //console.log(commentText)
         const fixComment = await commentmodels.updateCommentDB(postID, userID, commentText);
