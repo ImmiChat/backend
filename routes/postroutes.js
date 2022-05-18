@@ -31,7 +31,7 @@ Router.put("/posts/:id/", postcontrols.updatePost);
 
 // /post/:id
 //DELETE EXISTING BLOG
-Router.delete("/posts/:id/", postcontrols.deletePost);
+Router.delete("/posts/:id", postcontrols.deletePost);
 
 // Middleware that checks if the user is the same
 

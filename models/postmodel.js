@@ -29,11 +29,8 @@ function updatePostDB(id, user_id, body) {
 }
 
 //DELETE A POST
-function deleteOnePostDB(userID, postID) {
-  return dbpool.query("DELETE FROM posts WHERE user_id = $1 AND post_id = $2", [
-    userID,
-    postID,
-  ]);
+function deleteOnePostDB(postID) {
+  return db("posts").where({id: postID}).del().returning('*');
 }
 
 module.exports = {

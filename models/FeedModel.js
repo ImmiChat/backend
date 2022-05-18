@@ -8,7 +8,9 @@ class FeedModel {
         "users.first_name",
         "users.last_name",
         "posts.body",
-        "posts.updated_at"
+        "posts.updated_at",
+        "posts.id",
+        "posts.user_id"
       )
       .orderBy('posts.updated_at', 'desc')
   };

@@ -54,13 +54,9 @@ const updatePost = async (req, res) => {
 // /post/:id no need for userId
 //DELETE EXISTING POST
 const deletePost = async (req, res) => {
-    try {
-    const postID = parseInt(req.body.id);
-    const destroyPost = await postmodels.deleteOnePostDB(postID);
-    return res.status(200).json(destroyPost);
-    } catch (err) {
-        res.status(404).json({ message: err.message })
-    }
+    const {id} = req.params;
+    const deletedPost = await postmodels.deleteOnePostDB(id);
+    return res.status(201).json(deletedPost);
 };
 
 module.exports = {
