@@ -3,6 +3,7 @@ const dbpool = require('../dbconfig')
 //GET ALL POSTS
 function getAllPostsDB(){
   return dbpool.query('SELECT * FROM posts').then(results => results.rows)
+
 }
 
 
