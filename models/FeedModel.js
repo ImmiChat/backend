@@ -14,6 +14,7 @@ class FeedModel {
       )
       .orderBy('posts.updated_at', 'desc')
   };
+  
 }
 
 module.exports = FeedModel;
