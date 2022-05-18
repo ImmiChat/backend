@@ -6,7 +6,6 @@ const postRoutes = require("./routes/postroutes");
 //const commentRoutes = require('./routes/commentroutes');
 const cors = require("cors");
 const FeedRouter = require("./routes/FeedRouter");
-const postRoutes = require("./routes/postroutes");
 const app = express();
 
 //const dbpool = require(./dbconfig)
