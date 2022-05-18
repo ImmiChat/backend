@@ -22,8 +22,8 @@ exports.seed = async function (knex) {
     },
     {
       id: 2,
-      first_name: "sally",
-      last_name: "obama",
+      first_name: "Sally",
+      last_name: "Obama",
       email: "notreal@gmail.com",
       password: "123",
       bio: "i am also not real",
