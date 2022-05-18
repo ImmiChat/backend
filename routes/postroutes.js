@@ -1,5 +1,5 @@
 const express = require("express");
-const postcontrols = require("../controllers/postcontrollers");
+const postcontrols = require("../controllers/postcontroller");
 const Router = express.Router();
 
 //HOME SCREEN

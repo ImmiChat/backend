@@ -59,15 +59,19 @@ class AuthController {
       if (err) {
         return res.status(401).json(`Not authenticated`);
       } else {
-        const userId = decoded.userId;
-        const user = await UserModel.getUserFromDBByID(userId);
-        const accessToken = jwt.sign(user[0], "Your_Secret_Key", {
-          expiresIn: "1d",
-        });
-        return res.status(201).json({
-          token: accessToken,
-          user,
-        });
+        try {
+          const userId = decoded.userId;
+          const user = await UserModel.getUserFromDBByID(userId);
+          const accessToken = jwt.sign(user[0], "Your_Secret_Key", {
+            expiresIn: "1d",
+          });
+          return res.status(201).json({
+            token: accessToken,
+            user,
+          });
+        } catch (err) {
+          return res.status(401).json("Not authenticated");
+        }
       }
     });
   };
