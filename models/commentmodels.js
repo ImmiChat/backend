@@ -1,23 +1,31 @@
-/*
-const db = require('../db/db')
+const dbpool = require('../db/dbconfig')
 
-class CommentsModel {
-    static getCommentsOfBlogFromDB (blog_id){
-        return db.select().from('comments').join('users', 'users.id','=', 'comments.user_id').where({blog_id}).orderBy('comments.created_at')
-    }
-    static createCommentOfBlogFromDB (blog_id, user_id, comment_text) {
-        return db("comments")
-        .insert({blog_id, user_id, comment_text})
-        .returning(["id","blog_id","comment_text"]);
-    }
-    static editCommentOfBlogFromDB (blog_id, user_id, comment_text) {
-        return db("comments")
-        .insert({blog_id, user_id, comment_text})
-        .returning(["id","blog_id","comment_text"]);
-    }
-    static deleteCommentsOfBlogFromDB(blog_id){
-        return db.del().from('comments').where({blog_id}).orderBy('created_at')
-    }
+//GET ALL COMMENTS
+function getAllCommentsDB(){
+    return dbpool.query('SELECT * FROM comments').then(results => results.rows)
 }
-module.exports = CommentsModel;
-*/
+
+//GET ALL COMMENTS FROM A SINGLE USER 
+function getAllCommentsSingleUserDB(id){
+    return dbpool.query('SELECT * from comments WHERE id = $1', [id]).then(results => results.rows)
+}
+
+function createNewCommentDB(user_id, post_id, comment_text) {
+    return dbpool.query('INSERT into comments(user_id, post_id, comment_text) VALUES ($1, $2, $3) RETURNING *', [user_id, post_id, comment_text]).then(results => results.rows[0])
+}
+
+function updateCommentDB(post_id, user_id, comment_text) {
+    return dbpool.query('UPDATE comments SET post_id = $1 WHERE user_id = $2 AND comment_text = $3 RETURNING *', [post_id, user_id, comment_text]).then(result => result.rows[0])
+}
+
+function deleteCommentDB(post_id, comment_text) {
+    return dbpool.query('DELETE FROM comments WHERE post_id = $1 AND comment_text = $2', [post_id,comment_text])
+}
+
+module.exports = {
+    getAllCommentsDB,
+    getAllCommentsSingleUserDB,
+    createNewCommentDB,
+    updateCommentDB,
+    deleteCommentDB
+}
