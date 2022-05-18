@@ -18,7 +18,7 @@ app.use(cors());
 app.use(cookieParser());
 app.use(authRoutes);
 app.use(FeedRouter);
-app.use(postRoutes);
+// app.use(postRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).send("Testing Testing 1 2 3");
