@@ -15,7 +15,7 @@ Router.get("/posts", postcontrols.getAllPosts);
 // Get a single post by id
 
 // This is getting a single post by id. Not All posts from single User
-Router.get("posts/:id/", postcontrols.getASinglePost);
+Router.get("/posts/:id/", postcontrols.getASinglePost);
 
 // MAKE NEW BLOG
 // /posts
@@ -31,7 +31,7 @@ Router.put("/posts/:id/", postcontrols.updatePost);
 
 // /post/:id
 //DELETE EXISTING BLOG
-Router.delete("/posts/:id/", postcontrols.deletePost);
+Router.delete("/posts/:id", postcontrols.deletePost);
 
 // Middleware that checks if the user is the same
 
