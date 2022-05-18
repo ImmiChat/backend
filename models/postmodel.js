@@ -1,4 +1,4 @@
-const dbpool = require('../dbconfig')
+const dbpool = require('../db/dbconfig')
 
 //GET ALL POSTS
 function getAllPostsDB(){
@@ -8,19 +8,19 @@ function getAllPostsDB(){
 
 //GET ALL POSTS FROM A SINGLE USER
 function getAllPostsSingleUserDB(postID){
-  return dbpool.query('SELECT * FROM posts WHERE user_id = $1', [postID]).then(results => results.rows)
-}
+  return dbpool.query('SELECT * FROM posts WHERE id = $1', [postID]).then(results => results.rows)
+  }
 
 
 //CREATE A POST
-function createNewPostDB(userID, postContent){
-  return dbpool.query('INSERT INTO posts (user_id, content) VALUES ($1, $2) RETURNING *', [userID, postContent]).then(results => results.rows[0])
+function createNewPostDB(body){
+  return dbpool.query('INSERT into posts(body) VALUES ($1) RETURNING *', [body]).then(results => results.rows[0])
 }
 
 
 //UPDATE EXISTING POST
-function updatePostDB(postContent, userID, postsID){
-  return dbpool.query('UPDATE posts SET content = $1 WHERE user_id = $2 AND post_id = $3 RETURNING *', [postContent, userID, postID]).then(results => results.rows[0])
+function updatePostDB(id, user_id, body){
+  return dbpool.query('UPDATE posts SET id = $1 WHERE user_id = $2 AND body = $3 RETURNING *', [id, user_id, body]).then(results => results.rows[0])
 }
 
 
