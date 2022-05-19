@@ -29,7 +29,6 @@ const getASinglePost = async (req, res) => {
 const createNewPost = async (req, res) => {
   const { id, content } = req.body;
   const makeNewPost = await postmodels.createNewPostDB(id, content);
-  console.log(makeNewPost);
   return res.status(200).json(makeNewPost);
 };
 
@@ -42,9 +41,8 @@ const getCommentsOfPost = async (req, res) => {
 const createPostComment = async (req,res) => {
   const id = req.params.id;
   const {body, userId} = req.body;
-  console.log(id, body, userId)
   const newComment = await commentModel.createPostCommentFromDB(userId, id, body,);
-  return newComment;
+  return res.status(201).json(newComment);
 }
 
 // /post/:id no need for userId

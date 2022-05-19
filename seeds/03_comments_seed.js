@@ -15,6 +15,6 @@ exports.seed = async function (knex) {
     { post_id: 3, user_id: 1, comment_text: "nice blog" },
     { post_id: 3, user_id: 2, comment_text: "nice blog" },
     { post_id: 3, user_id: 3, comment_text: "nice blog" },
-    { post_id: 3, user_id: 3, comment_text: "nice blog" },
+    { post_id: 4, user_id: 3, comment_text: "nice blog" },
   ]);
 };
