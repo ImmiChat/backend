@@ -14,6 +14,9 @@ Router.get("/posts/:id/", postcontrols.getASinglePost);
 Router.get("/posts/:id/comments", postcontrols.getCommentsOfPost);
 
 Router.post("/posts", postcontrols.createNewPost);
+
+Router.post('/posts/:id/comments', postcontrols.createPostComment);
+
 // /post/:id
 // id ^ here is postId
 //UPDATE EXISTING BLOG

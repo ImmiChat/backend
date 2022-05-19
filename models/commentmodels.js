@@ -8,6 +8,10 @@ function getAllCommentsDB() {
     .groupBy("comments.post_id");
 }
 
+function getCommentsOfPostFromDB() {
+  
+}
+
 //GET ALL COMMENTS FROM A SINGLE USER
 function getAllCommentsSingleUserDB(id) {
   return dbpool
@@ -15,13 +19,8 @@ function getAllCommentsSingleUserDB(id) {
     .then((results) => results.rows);
 }
 
-function createNewCommentDB(user_id, post_id, comment_text) {
-  return dbpool
-    .query(
-      "INSERT into comments(user_id, post_id, comment_text) VALUES ($1, $2, $3) RETURNING *",
-      [user_id, post_id, comment_text]
-    )
-    .then((results) => results.rows[0]);
+function createPostCommentFromDB(user_id, post_id, comment_text) {
+  return db('comments').insert({post_id, user_id, comment_text}).returning('*');
 }
 
 function updateCommentDB(post_id, user_id, comment_text) {
@@ -43,7 +42,7 @@ function deleteCommentDB(post_id, comment_text) {
 module.exports = {
   getAllCommentsDB,
   getAllCommentsSingleUserDB,
-  createNewCommentDB,
+  createPostCommentFromDB,
   updateCommentDB,
   deleteCommentDB,
 };
