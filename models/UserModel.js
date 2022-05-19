@@ -13,6 +13,22 @@ class UserModel {
       .returning("*");
   };
 
+  static updateUserFromDB = (
+    { first_name, last_name, language, country_of_origin, bio },
+    id
+  ) => {
+    return db("users")
+      .update({
+        first_name,
+        last_name,
+        language,
+        country_of_origin,
+        bio,
+      })
+      .where({ id })
+      .returning("*");
+  };
+
   static getUserFromDB = (email) => {
     return db.select().from("users").where({ email });
   };
