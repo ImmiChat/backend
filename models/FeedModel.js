@@ -12,9 +12,13 @@ class FeedModel {
         "posts.id",
         "posts.user_id"
       )
-      .orderBy('posts.updated_at', 'desc')
+      .orderBy("posts.updated_at", "desc");
   };
-  
+  static getLikesFromDB = () => {
+    return db("likes")
+      .select("likes.post_id", db.raw("COUNT(*) as numberOflikes"))
+      .groupBy("likes.post_id");
+  };
 }
 
 module.exports = FeedModel;

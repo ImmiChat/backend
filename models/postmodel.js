@@ -3,7 +3,7 @@ const db = require("../db/db");
 
 //GET ALL POSTS
 function getAllPostsDB() {
-  return dbpool.query("SELECT * FROM posts").then((results) => results.rows);
+  return db.select().from("posts");
 }
 
 //GET ALL POSTS FROM A SINGLE USER
@@ -11,6 +11,13 @@ function getAllPostsSingleUserDB(postID) {
   return dbpool
     .query("SELECT * FROM posts WHERE id = $1", [postID])
     .then((results) => results.rows);
+}
+
+function getCommentsOfPostFromDB(postID) {
+  return db("comments")
+    .select()
+    .join("users", "users.id", "=", "comments.user_id")
+    .where("comments.post_id", "=", postID);
 }
 
 //CREATE A POST
@@ -36,4 +43,5 @@ module.exports = {
   createNewPostDB,
   updatePostDB,
   deleteOnePostDB,
+  getCommentsOfPostFromDB,
 };

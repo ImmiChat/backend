@@ -8,9 +8,10 @@ Router.get("/home", postcontrols.home);
 //GET ALL POSTS
 Router.get("/posts", postcontrols.getAllPosts);
 
-//GET A SINGLE POST BY ID 
+//GET A SINGLE POST BY ID
 Router.get("/posts/:id/", postcontrols.getASinglePost);
 
+Router.get("/posts/:id/comments", postcontrols.getCommentsOfPost);
 
 Router.post("/posts", postcontrols.createNewPost);
 // /post/:id

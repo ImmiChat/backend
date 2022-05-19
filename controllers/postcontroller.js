@@ -32,6 +32,12 @@ const createNewPost = async (req, res) => {
   return res.status(200).json(makeNewPost);
 };
 
+const getCommentsOfPost = async (req, res) => {
+  const id = req.params.id;
+  const comments = await postmodels.getCommentsOfPostFromDB(id);
+  return res.status(201).json(comments);
+};
+
 // /post/:id no need for userId
 //UPDATE EXISTING POST
 const updatePost = async (req, res) => {
@@ -56,4 +62,5 @@ module.exports = {
   createNewPost,
   updatePost,
   deletePost,
+  getCommentsOfPost,
 };
