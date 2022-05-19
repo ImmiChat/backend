@@ -3,7 +3,7 @@ const db = require("../db/db");
 
 //GET ALL POSTS
 function getAllPostsDB() {
-  return dbpool.query("SELECT * FROM posts").then((results) => results.rows);
+  return db.select().from("posts");
 }
 
 //GET ALL POSTS FROM A SINGLE USER
@@ -13,24 +13,28 @@ function getAllPostsSingleUserDB(postID) {
     .then((results) => results.rows);
 }
 
+function getCommentsOfPostFromDB(postID) {
+  return db("comments")
+    .select()
+    .join("users", "users.id", "=", "comments.user_id")
+    .where("comments.post_id", "=", postID);
+}
+
 //CREATE A POST
 function createNewPostDB(userID, postContent) {
-  return db("posts").insert({ user_id: userID, body: postContent }).returning('*');
+  return db("posts")
+    .insert({ user_id: userID, body: postContent })
+    .returning("*");
 }
 
 //UPDATE EXISTING POST
-function updatePostDB(id, user_id, body) {
-  return dbpool
-    .query(
-      "UPDATE posts SET id = $1 WHERE user_id = $2 AND body = $3 RETURNING *",
-      [id, user_id, body]
-    )
-    .then((results) => results.rows[0]);
+function updatePostDB(id, body) {
+  return db("posts").where({ id }).update({ body }).returning("*");
 }
 
 //DELETE A POST
 function deleteOnePostDB(postID) {
-  return db("posts").where({id: postID}).del().returning('*');
+  return db("posts").where({ id: postID }).del().returning("*");
 }
 
 module.exports = {
@@ -39,4 +43,5 @@ module.exports = {
   createNewPostDB,
   updatePostDB,
   deleteOnePostDB,
+  getCommentsOfPostFromDB,
 };
