@@ -21,9 +21,9 @@ function getCommentsOfPostFromDB(postID) {
 }
 
 //CREATE A POST
-function createNewPostDB(userID, postContent) {
+function createNewPostDB(userID, postContent, topic) {
   return db("posts")
-    .insert({ user_id: userID, body: postContent })
+    .insert({ user_id: userID, body: postContent, topic })
     .returning("*");
 }
 

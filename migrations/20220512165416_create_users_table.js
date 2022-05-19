@@ -1,4 +1,3 @@
-
 /**
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
@@ -21,6 +20,7 @@ exports.up = function (knex) {
       table.increments("id").primary();
       table.integer("user_id").references("id").inTable("users");
       table.string("body").notNullable();
+      table.string("topic");
       table.timestamps(true, true);
     });
 };
