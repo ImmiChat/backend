@@ -10,7 +10,6 @@ exports.seed = async function (knex) {
   await knex("users").del();
   await knex("users").insert([
     {
-      id: 1,
       first_name: "Kenya",
       last_name: "Cobbs",
       email: "somethingelse@gmail.com",
@@ -21,7 +20,6 @@ exports.seed = async function (knex) {
       language: "spanish",
     },
     {
-      id: 2,
       first_name: "Sally",
       last_name: "Obama",
       email: "notreal@gmail.com",
@@ -32,7 +30,6 @@ exports.seed = async function (knex) {
       language: "notrealia",
     },
     {
-      id: 3,
       first_name: "Shawn",
       last_name: "Townsend",
       email: "jk@gmail.com",
