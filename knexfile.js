@@ -5,11 +5,11 @@
  */
 module.exports = {
   development: {
-    client: "postgresql",
+    client: "pg",
     connection: {
       database: 'immichat',
       user:     'postgres',
-      password: '8333*'
+      password: '8333'
     },
   },
   production: {
