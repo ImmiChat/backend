@@ -1,26 +1,39 @@
 const likeModels = require("../models/LikeModels")
 
-const GetAllLikesFromASinglePost = async (req,res) => {
-    const postID = req.params.id
-    const GetLikesFromSinglePost = await likeModels.GetLikesFromPost(postID)
-    return res.status(200).json(GetLikesFromSinglePost)
+const getAllLikesFromASinglePost = async (req,res) => {
+    try{
+    const postID = req.params.post_id
+    const getLikesFromSinglePost = await likeModels.getLikesFromPost(postID)
+    return res.status(200).json(getLikesFromSinglePost)
+    } 
+    catch(err) {
+        res.status(404).json({ message:err.message})
+    }
 }
-const CreateALikeOnAPost = async ( req,res) => {
-    const {post_id} = req.body;
-    const MakeALikeOnAPost = await likeModels.createALike(post_id)
-    return res.status(200).json(MakeALikeOnAPost)
+const createALikeOnAPost = async ( req,res) => {
+    try{
+    const postID = req.params.post_id;
+    const makeALikeOnAPost = await likeModels.createALike(postID)
+    return res.status(200).json(makeALikeOnAPost)
+    } catch(err){
+        res.status(404).json({message:err.message})
+    }
 };
-const DeleteALikeOnAPost = async (req,res) => {
-    const{post_id} = req.params
-    const deletedLike = await likeModels.deleteALike(post_id)
+const deleteALikeOnAPost = async (req,res) => {
+    try{
+    const postID = req.params.post_id
+    const deletedLike = await likeModels.deleteALike(postID)
     return res.status(201).json(deletedLike)
+    } catch(err){
+        res.status(404).json({message:err.message})
+    }
 }
 
 //Theoretically this function should get the post id and await the number of likes retrieved from 
 //the function in likeModels and return it with a status of 200.
 
 module.exports = {
-    GetAllLikesFromASinglePost,
-    CreateALikeOnAPost,
-    DeleteALikeOnAPost,
+    getAllLikesFromASinglePost,
+    createALikeOnAPost,
+    deleteALikeOnAPost,
 }

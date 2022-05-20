@@ -1,21 +1,20 @@
-const { Router } = require("express");
 const express = require ("express")
 const likeControls = require("../controllers/likeControllers")
 const Router = express.Router();
 
 
 // Get Likes From A Single Post
-Router.get("/post/:id/likes", likeControls.GetAllLikesFromAllPosts);
+Router.get("/post/:id/likes", likeControls.getAllLikesFromASinglePost);
 
 
 
 // Create A Like
-Router.get("/post/:id/likes", likeControls.CreateALikeOnAPost);
+Router.post("/post/:id/likes", likeControls.createALikeOnAPost);
 
 
 
 // Delete a Like
-Router.get("/like/:id", likeControls.DeleteALikeOnAPost);
+Router.delete("/like/:id", likeControls.deleteALikeOnAPost);
 
 module.exports = Router
 

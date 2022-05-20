@@ -2,15 +2,15 @@ const db = require('../db/db')
 const dbpool = require('../dbconfig')
 
 //GET ALL LIKES FROM A POSt
-function GetLikesFromPost(post_id) {
-    return dbpool.query(`SELECT LIKES FROM POSTS WHERE id = ${post_id}`)
+
+function getLikesFromPost(post_id) {
+    return dbpool.query("SELECT * likes FROM posts WHERE post_id = $1", [post_id])
     .then((results) => results.rows)
 }
-
-function createALike(user_id, post_id) {
-    return db("likes").insert({user_id, post_id}).returning("*")
+function createALike(post_id) {
+    return db("likes").insert({post_id}).returning("*")
 }
-function deleteALike(user_id,post_id){
+function deleteALike(post_id){
     return db("likes").where({post_id}).del().returning('*');
 }
 
@@ -27,7 +27,7 @@ function deleteALike(user_id,post_id){
 //Update One -- 
 
 module.exports = {
-    GetLikesFromPost,
+    getLikesFromPost,
     createALike,
     deleteALike,
 }
