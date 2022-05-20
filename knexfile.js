@@ -9,7 +9,11 @@ module.exports = {
     connection: {
       database: "immichat",
       user: "postgres",
+<<<<<<< HEAD
       password: "8333",
+=======
+      password: "1123",
+>>>>>>> 49bc6c807811f5344e50d5e128aeadb741ef7b18
     },
   },
   production: {
