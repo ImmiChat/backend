@@ -4,6 +4,7 @@ const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/AuthRouter");
 const postRoutes = require("./routes/postroutes");
 const commentRoutes = require("./routes/commentroutes");
+const likeRoutes = require("./routes/likeRoutes")
 const cors = require("cors");
 const FeedRouter = require("./routes/FeedRouter");
 const app = express();
@@ -21,6 +22,7 @@ app.use(authRoutes);
 app.use(FeedRouter);
 app.use(postRoutes);
 app.use(commentRoutes);
+app.use(likeRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).send("Testing Testing 1 2 3");
