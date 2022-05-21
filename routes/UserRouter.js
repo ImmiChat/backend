@@ -13,4 +13,6 @@ router.put("/user/:id/friends", FriendController.acceptFriendRequest);
 
 router.put("/user/:id", UserController.updateUser);
 
+router.delete("/user/:id/friends", FriendController.deleteFriend);
+
 module.exports = router;
