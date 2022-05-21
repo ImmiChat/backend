@@ -1,6 +1,18 @@
 const db = require("../db/db");
 
 class UserModel {
+  static getAllUsersFromDB = () => {
+    return db
+      .select(
+        "first_name",
+        "last_name",
+        "email",
+        "language",
+        "country_of_origin"
+      )
+      .from("users");
+  };
+
   static createUserFromDB = (userInfo) => {
     const { firstName, lastName, email, hashedPassword, language } = userInfo;
     return db("users")
