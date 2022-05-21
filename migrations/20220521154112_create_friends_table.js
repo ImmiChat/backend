@@ -7,7 +7,7 @@ exports.up = function (knex) {
     table.increments("id").primary();
     table.integer("friend_one").references("id").inTable("users").notNullable();
     table.integer("friend_two").references("id").inTable("users").notNullable();
-    table.boolean("accepted").defaultTo(null).notNullable();
+    table.boolean("accepted").defaultTo(false);
     table.timestamps(true, true);
   });
 };
