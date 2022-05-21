@@ -43,5 +43,27 @@ exports.seed = async function (knex) {
       country_of_origin: "russia",
       language: "russian",
     },
+    {
+      id: 4,
+      first_name: "Ray",
+      last_name: "Lu",
+      email: "raylu@gmail.com",
+      password: "123",
+      bio: "i am still not real",
+      profile_picture: "",
+      country_of_origin: "russia",
+      language: "russian",
+    },
+    {
+      id: 5,
+      first_name: "Matt",
+      last_name: "Developer",
+      email: "matt@gmail.com",
+      password: "123",
+      bio: "i am still not real",
+      profile_picture: "",
+      country_of_origin: "russia",
+      language: "russian",
+    },
   ]);
 };
