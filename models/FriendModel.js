@@ -20,6 +20,21 @@ class FriendModel {
           .join("users", "users.id", "=", "friend_one");
       });
   };
+  static createFriendRequestFromDB = (userId, friendId) => {
+    return db("friends")
+      .insert({
+        friend_one: userId,
+        friend_two: friendId,
+      })
+      .returning("*");
+  };
+
+  static acceptFriendRequestFromDB = (userId, friendId) => {
+    return db("friends")
+      .update({ accepted: true })
+      .where({ friend_two: userId, friend_one: friendId })
+      .returning("*");
+  };
 }
 
 module.exports = FriendModel;
