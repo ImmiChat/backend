@@ -26,6 +26,16 @@ class FriendController {
     );
     return res.status(201).json(acceptedFriendRequest);
   };
+
+  static deleteFriend = async (req, res) => {
+    const userId = req.params.id;
+    const friendId = req.body.id;
+    const deletedFriend = await FriendModel.deleteFriendFromDB(
+      userId,
+      friendId
+    );
+    return res.status(201).json(deletedFriend);
+  };
 }
 
 module.exports = FriendController;
