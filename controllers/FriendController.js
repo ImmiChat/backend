@@ -3,8 +3,19 @@ const FriendModel = require("../models/FriendModel");
 class FriendController {
   static getAllFriends = async (req, res) => {
     const userId = req.params.id;
-    const friends = await FriendModel.getAllFriendsFromDB(userId);
-    return res.status(201).json(friends);
+    const friends = (await FriendModel.getAllFriendsFromDB(userId)).map(
+      (friend) => ({
+        ...friend,
+        requested: false,
+      })
+    );
+    const friendsTwo = (await FriendModel.getAllFriendsFromDBTwo(userId)).map(
+      (friend) => ({
+        ...friend,
+        requested: true,
+      })
+    );
+    return res.status(201).json([...friends, ...friendsTwo]);
   };
 
   static createFriendRequest = async (req, res) => {
