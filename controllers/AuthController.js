@@ -7,7 +7,6 @@ class AuthController {
     const { firstName, lastName, email, password } = req.body;
     // Checks if User already exists
     const user = await UserModel.getUserFromDB(email);
-    console.log(user);
     if (user.length > 0) return res.status(401).json("User exists");
     // Hash the password and create user using model
     const hashedPassword = bcrypt.hashSync(password, 8);
@@ -31,6 +30,7 @@ class AuthController {
       return res.status(404).json({ message: "Incorrect Password" });
     }
     // JWT
+
     const token = jwt.sign({ userId: user[0].id }, "Your_Secret_Key", {
       expiresIn: "1d",
     });
@@ -38,6 +38,7 @@ class AuthController {
     const refreshToken = jwt.sign({ userId: user[0].id }, "Your_Secret_Key", {
       expiresIn: "7d",
     });
+    user[0].isAuth = true;
     return res.status(200).json({
       message: "Logged in successfully 😊 👌",
       token,
@@ -65,6 +66,7 @@ class AuthController {
           const accessToken = jwt.sign(user[0], "Your_Secret_Key", {
             expiresIn: "1d",
           });
+          user[0].isAuth = true;
           return res.status(201).json({
             token: accessToken,
             user,

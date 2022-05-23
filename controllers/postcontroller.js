@@ -1,5 +1,5 @@
 const postmodels = require("../models/postmodel");
-const commentModel = require('../models/commentmodels.js')
+const commentModel = require("../models/commentmodels.js");
 
 // Make sure to return after sending res back(done)
 
@@ -27,8 +27,8 @@ const getASinglePost = async (req, res) => {
 
 //MAKE NEW POST
 const createNewPost = async (req, res) => {
-  const { id, content } = req.body;
-  const makeNewPost = await postmodels.createNewPostDB(id, content);
+  const { id, content, topic } = req.body;
+  const makeNewPost = await postmodels.createNewPostDB(id, content, topic);
   return res.status(200).json(makeNewPost);
 };
 
@@ -38,12 +38,16 @@ const getCommentsOfPost = async (req, res) => {
   return res.status(201).json(comments);
 };
 
-const createPostComment = async (req,res) => {
+const createPostComment = async (req, res) => {
   const id = req.params.id;
-  const {body, userId} = req.body;
-  const newComment = await commentModel.createPostCommentFromDB(userId, id, body,);
+  const { body, userId } = req.body;
+  const newComment = await commentModel.createPostCommentFromDB(
+    userId,
+    id,
+    body
+  );
   return res.status(201).json(newComment);
-}
+};
 
 // /post/:id no need for userId
 //UPDATE EXISTING POST
@@ -70,5 +74,5 @@ module.exports = {
   updatePost,
   deletePost,
   getCommentsOfPost,
-  createPostComment
+  createPostComment,
 };
