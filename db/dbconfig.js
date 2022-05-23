@@ -3,7 +3,7 @@ const { Pool } = require("pg");
 const connectionDevelopment = {
   database: "immichat", // Replace this with your DB name
   user: "postgres", // If you have a different postgres user, replace here
-  password: "1123", // If you have a postgres password, write it here
+  password: "8333", // If you have a postgres password, write it here
   host: "localhost",
   port: 5432,
 };
