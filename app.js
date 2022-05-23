@@ -7,6 +7,7 @@ const commentRoutes = require("./routes/commentroutes");
 const likeRoutes = require("./routes/likeRoutes")
 const cors = require("cors");
 const FeedRouter = require("./routes/FeedRouter");
+const userRoutes = require("./routes/UserRouter");
 const app = express();
 
 //const dbpool = require(./dbconfig)
@@ -23,6 +24,7 @@ app.use(FeedRouter);
 app.use(postRoutes);
 app.use(commentRoutes);
 app.use(likeRoutes);
+app.use(userRoutes);
 
 app.get("/", (req, res) => {
   res.status(200).send("Testing Testing 1 2 3");

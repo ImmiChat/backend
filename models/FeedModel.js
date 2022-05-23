@@ -10,7 +10,8 @@ class FeedModel {
         "posts.body",
         "posts.updated_at",
         "posts.id",
-        "posts.user_id"
+        "posts.user_id",
+        "posts.topic"
       )
       .orderBy("posts.updated_at", "desc");
   };
