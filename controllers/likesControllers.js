@@ -12,7 +12,7 @@ const getAllLikesFromSinglePost = async (req,res) => {
 const createALikeOnAPost = async ( req,res) => {
     try {
     const postID = req.params.id
-    const userID = req.params.id
+    const userID = req.body.user_id
     const createALike = await likeModels.createALike(userID, postID)
     console.log(createALike)
     return res.status(200).json(createALike)
