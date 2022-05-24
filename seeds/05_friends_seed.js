@@ -8,9 +8,9 @@ exports.seed = async function (knex) {
   await knex("friends").insert([
     { friend_one: 1, friend_two: 2, accepted: true },
     { friend_one: 3, friend_two: 1, accepted: true },
-    { friend_one: 1, friend_two: 4, accepted: false },
-    { friend_one: 5, friend_two: 1, accepted: false },
+    
+    
     { friend_one: 2, friend_two: 3, accepted: false },
-    { friend_one: 2, friend_two: 4, accepted: false },
+    
   ]);
 };
