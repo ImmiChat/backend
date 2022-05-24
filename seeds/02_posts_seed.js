@@ -36,7 +36,7 @@ exports.seed = async function (knex) {
       topic: "Healthcare",
     },
     {
-      id: 6,
+      
       user_id: 1,
       body: "I am looking for a job referral in consulting. Any help would be appreciated.",
       topic: "Jobs",

@@ -1,14 +1,19 @@
 const express = require("express");
 const path = require("path");
+const http = require('http');
+const cors = require("cors");
+const {Server } = require('socket.io')
 const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/AuthRouter");
 const postRoutes = require("./routes/postroutes");
 const commentRoutes = require("./routes/commentroutes");
 const likeRoutes = require("./routes/likeRoutes")
-const cors = require("cors");
 const FeedRouter = require("./routes/FeedRouter");
 const userRoutes = require("./routes/UserRouter");
 const app = express();
+
+// Create server using http and express to setup socket
+const server = http.createServer(app);
 
 //const dbpool = require(./dbconfig)
 
@@ -31,6 +36,6 @@ app.get("/", (req, res) => {
 });
 
 //Listen to the port
-app.listen(PORT, () => {
+server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
