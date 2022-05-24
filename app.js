@@ -14,6 +14,22 @@ const app = express();
 
 // Create server using http and express to setup socket
 const server = http.createServer(app);
+const io = new Server(server, {
+  cors: {
+    origin: 'http://localhost:3000',
+    methods: ["GET", "POST"]
+  }
+})
+
+// Listens to connection event
+io.on('connection', (socket) => {
+  console.log(socket.id)
+
+  socket.on('disconnect', () => {
+    console.log('user disconnected', socket.id);
+  })
+})
+
 
 //const dbpool = require(./dbconfig)
 
