@@ -19,6 +19,7 @@ class AuthController {
     const newUser = await UserModel.createUserFromDB(userInfo);
     return res.status(201).json(`Successfully Registered!`);
   };
+
   static validateLogin = async (req, res) => {
     const { email, password } = req.body;
     const user = await UserModel.getUserFromDB(email);
