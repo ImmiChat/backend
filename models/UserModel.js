@@ -22,20 +22,32 @@ class UserModel {
         "last_name",
         "email",
         "language",
-        "country_of_origin"
+        "country_of_origin",
+        "bio"
       )
       .from("users")
       .where({ id: userId });
   };
 
   static createUserFromDB = (userInfo) => {
-    const { firstName, lastName, email, hashedPassword, language } = userInfo;
+    const {
+      firstName,
+      lastName,
+      email,
+      hashedPassword,
+      bio,
+      country,
+      language,
+    } = userInfo;
     return db("users")
       .insert({
         first_name: firstName,
         last_name: lastName,
         email,
         password: hashedPassword,
+        bio,
+        country_of_origin: country,
+        language,
       })
       .returning("*");
   };

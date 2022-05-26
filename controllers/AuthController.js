@@ -4,7 +4,9 @@ const UserModel = require("../models/UserModel");
 
 class AuthController {
   static validateRegistration = async (req, res) => {
-    const { firstName, lastName, email, password } = req.body;
+    const { firstName, lastName, email, password, bio, country, language } =
+      req.body;
+    console.log(req.body);
     // Checks if User already exists
     const user = await UserModel.getUserFromDB(email);
     if (user.length > 0) return res.status(401).json("User exists");
@@ -15,6 +17,9 @@ class AuthController {
       lastName,
       email,
       hashedPassword,
+      bio,
+      country,
+      language,
     };
     const newUser = await UserModel.createUserFromDB(userInfo);
     return res.status(201).json(`Successfully Registered!`);

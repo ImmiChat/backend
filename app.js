@@ -25,9 +25,10 @@ const io = new Server(server, {
 // Listens to connection event
 io.on("connection", (socket) => {
   console.log(socket.id);
+
+  // Listening to chat
   socket.on("chat", (payload) => {
-    console.log(payload);
-    io.emit("chat", payload);
+    socket.broadcast.emit("receive_message", payload);
   });
   socket.on("disconnect", () => {
     console.log("user disconnected", socket.id);
